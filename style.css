@@ -1,0 +1,33 @@
+header{
+    text-align: center;
+}
+
+.container-cursos{
+    display:flex;
+}
+
+.curso{
+    width: 30vw;
+}
+
+.curso:hover{
+    background-color: beige;
+
+    #image-curso{
+        box-shadow: 10px 5px 5px black;
+    }
+}
+
+.container-image{
+    width: 20rem;
+    height: 10rem;
+}
+#image-curso{
+    max-width: 10rem;
+    max-height: 7rem;
+}
+
+section{
+    margin: auto;
+}
+
