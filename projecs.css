@@ -1,0 +1,39 @@
+html{
+    padding: 0;
+    margin: 0;
+}
+
+header{
+    text-align: center;
+    width: 100%;
+    background-color: #8625d2;
+    color:white;
+    font-size: 20px;
+    padding: 4px 0;
+    margin:0;
+}
+
+nav{
+    background-color: #8725d26c;
+}
+main{
+    margin-top: 10px;
+}
+table {
+    margin-top:20px;
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin: auto;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
