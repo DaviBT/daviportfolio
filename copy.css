@@ -1,0 +1,128 @@
+html, body {margin: 0; width: 100vw;overflow-x: hidden; background-color: lightgray;}
+
+header{
+    width: 96vw;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px 0 10px;
+    background-color: bisque;
+    border: 2px solid indigo;
+}
+
+header > .himage > img{
+    height: 6em;
+    width: auto;
+}
+
+header > h1{
+    color: darkgreen;
+
+}
+
+
+
+/* menu */
+
+nav{
+    background-color: lightskyblue;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 10px 10px 10px;
+}
+
+nav > a{
+    text-decoration: none;
+    color: darkred;
+    font-weight: bold;
+    font-size: small;
+}
+
+
+/* main */
+
+main > h2{
+    text-align: center;
+}
+
+main> div{
+    width: 96vw;
+    height: fit-content;
+    margin:auto;
+}
+
+main > div >  p{
+    text-align: center;
+    color: indigo;
+}
+
+.container{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4em;
+    flex-wrap: wrap;
+}
+
+.container > div >  img{
+    height: 20em;
+    width: auto;
+}
+
+.containeriframe{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4em;
+}
+
+table{
+    border: 3px dashed red;
+    margin: auto;
+    margin-bottom: 4em;
+    
+}
+
+th{
+    color: red;
+}
+
+td, th{
+    border: 1px solid red;
+    text-align: left;
+    padding: 8px;
+    text-align: center;
+}
+
+aside{
+    background-color: yellow;
+    width: 30vw;
+    margin: auto;
+}
+
+aside > ul > li> a{
+    color: darkred;
+    display: inline-block;
+    margin-left: 5em;
+}
+
+footer{
+    width: 96vw;
+    height: fit-content;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: bisque;
+    margin: 10px 10px 10px 10px;
+    text-align: center;
+}
+
+footer > img{
+    height: 8em;
+    width: auto;
+}
+
+footer>div>p{
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 15pt;
+}
