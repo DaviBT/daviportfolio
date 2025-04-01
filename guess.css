@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(218, 190, 156);
+}
+
+h1{
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#result{
+    background-color: aliceblue;
+    width: 50vw;
+    height: 200px;
+    margin: 25px auto;
+    text-align: center;
+}
