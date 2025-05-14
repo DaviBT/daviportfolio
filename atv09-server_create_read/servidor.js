@@ -4,7 +4,6 @@ const app = express();
 const http = require("http");
 const bodyParser = require("body-parser");
 
-
 const server = http.createServer(app);
 const PORT = 80;
 
@@ -39,39 +38,10 @@ app.get("/", (req, res) => {
   // res.sendFile(path.join(__dirname, '../atv02-esqDoSite(projects)', 'projects.html'));
 });
 
-let usuarioCadastrado = {};
+app.post("/blog", (req, res) => {
+  let data = { db_titulo: req.body.titulo, db_resumo: req.body.resumo, db_conteudo: req.body.conteudo };
 
-app.post("/cadastra", (req, res) => {
-  let data = { db_nome: req.body.nome, db_login: req.body.login, db_senha: req.body.senha };
-
-
-  usuarioCadastrado.nome = req.body.nome;
-  usuarioCadastrado.sobrenome = req.body.sobrenome;
-  usuarioCadastrado.nascimento = req.body.nascimento;
-  usuarioCadastrado.estado_civil = req.body.estado_civil;
-
-  res.redirect("login.html");
+  res.redirect("statusBlog.html");
 });
 
-app.get("/login", (req, res) => {
-  let nomeLogin = req.query.nomeLogin;
-  let sobrenomeLogin = req.query.sobrenomeLogin;
-  let nascimentoLogin = req.query.nascimentoLogin;
-  let estado_civilLogin = req.query.estado_civilLogin;
 
-  if (
-    usuarioCadastrado.nome === nomeLogin &&
-    usuarioCadastrado.sobrenome === sobrenomeLogin &&
-    usuarioCadastrado.nascimento === nascimentoLogin &&
-    usuarioCadastrado.estado_civil === estado_civilLogin
-  ) {
-    res.render("resposta_login", {
-      nomeLogin,
-      sobrenomeLogin,
-      nascimentoLogin,
-      estado_civilLogin,
-    });
-  } else {
-    res.send("dados inválidos");
-  }
-});
