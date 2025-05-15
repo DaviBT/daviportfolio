@@ -1,47 +1,59 @@
-const express = require("express");
-const path = require("path");
-const app = express();
-const http = require("http");
-const bodyParser = require("body-parser");
-
-const server = http.createServer(app);
-const PORT = 80;
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "/views"));
-
-server.listen(PORT);
-console.log("servidor rodando na porta " + PORT);
-
-// Define o diretório onde estão os arquivos
-app.use(express.static(path.join(__dirname, "/public/")));
-app.use(express.static(path.join(__dirname, "/views/")));
-
-
-// mongodb
+var http = require("http");
+var express = require("express");
+var bodyParser = require("body-parser")
 var mongodb = require("mongodb");
+
 const MongoClient = mongodb.MongoClient;
-const url =
-  "mongodb+srv://davi:1234@bancoaula.sgm5yag.mongodb.net/?retryWrites=true&w=majority&appName=bancoAula";
-const client = new MongoClient(url, { useNewUrlParser: true });
+const uri = `mongodb+srv://davi:1234@bancoaula.sgm5yag.mongodb.net/?retryWrites=true&w=majority&appName=bancoAula`;
+const client = new MongoClient(uri, { useNewUrlParser: true });
 
-let dbo = client.db("bancoAula");
-let usuarios = dbo.collection("usuarios");
+var dbo = client.db("bancoAula");
+var posts = dbo.collection("posts");
+
+var app = express();
+app.use(express.static('./public'))
+app.use(bodyParser.urlencoded({extended: false }))
+app.use(bodyParser.json())
+app.set('view engine', 'ejs')
+app.set('views', './views');
+
+var server = http.createServer(app);
+server.listen(80);
+
+console.log("Servidor rodando: http://localhost:80");
 
 
+// Métodos e actions
 
-
-app.get("/", (req, res) => {
-  res.redirect("projects.html");
-  // res.sendFile(path.join(__dirname, '../atv02-esqDoSite(projects)', 'projects.html'));
+app.get("/", async function(req, res) {
+  try {
+      const documentos = await posts.find().toArray(); 
+      res.render("blog", { posts: documentos }); 
+  } catch (err) {
+      console.error(err);
+      res.status(500).send("Erro ao carregar posts");
+  }
 });
 
-app.post("/blog", (req, res) => {
-  let data = { db_titulo: req.body.titulo, db_resumo: req.body.resumo, db_conteudo: req.body.conteudo };
 
-  res.redirect("statusBlog.html");
-});
+app.post("/submit", function(requisicao, resposta){
+    let titulo = requisicao.body.titulo;
+    let resumo = requisicao.body.resumo;
+    let conteudo = requisicao.body.conteudo;
+    console.log(titulo, resumo, conteudo);
 
+    var data = { db_titulo: titulo, db_resumo: resumo, db_conteudo: conteudo };
 
+    posts.insertOne(data, function(err){
+        if(err){
+            resposta.render("resposta",{status: "Erro" ,titulo, resumo, conteudo});
+        }else{
+            resposta.redirect("statusBlog.html")
+        }
+    })
+})
+
+// app.get('/views/blog.ejs', async (req, res) => {
+//   const posts = await posts.find();
+//   res.render('posts', { posts });
+// });
