@@ -55,6 +55,22 @@ app.post("/cadast_user", function(req, resp) {
 });
 
 
+// login
+app.post("/login", function(req, resp) {
+  var data = {db_login: req.body.login, db_senha: req.body.senha };
+
+  usuarios.find(data).toArray(function(err, items) {
+    console.log(items);
+    if (items.length == 0) {
+      resp.render('resposta_usuario', {resposta: "Usuário/senha não encontrado!"})
+    }else if (err) {
+      resp.render('resposta_usuario', {resposta: "Erro ao logar usuário!"})
+    }else {
+      resp.render('resposta_usuario', {resposta: "Usuário logado com sucesso!"})        
+    };
+  });
+
+});
 
 
 
