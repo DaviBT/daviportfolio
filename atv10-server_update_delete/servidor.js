@@ -9,6 +9,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true });
 
 var dbo = client.db("lab10");
 var usuarios = dbo.Collection("usuarios");
+var carros = dbo.Collections("carros")
 
 var app = express();
 app.use(express.static('./public'))
@@ -36,7 +37,9 @@ app.get('/', (req, res) => {
 
 
 
-// usuario ---------------
+//                usuario ---------------
+
+// cadastro
 app.post("/cadast_user", function(req, resp) {
   var data = { db_nome: req.body.nome, db_login: req.body.login, db_senha: req.body.senha };
 
@@ -51,3 +54,24 @@ app.post("/cadast_user", function(req, resp) {
  
 });
 
+
+
+
+
+
+
+
+//                  carros ---------------
+app.post("/new_car", function(req, resp) {
+  var data = { db_marca: req.body.marca, db_modelo: req.body.modelo, db_ano: req.body.ano, db_qtde_disponivel: req.body.qtde_disponivel };
+
+  usuarios.insertOne(data, function (err) {
+    console.log(err)
+    if (err) {
+      resp.render('resposta_usuario', {resposta: "Erro ao cadastrar o carro!"})
+    }else {
+      resp.render('resposta_usuario', {resposta: "Carro cadastrado com sucesso!"})        
+    };
+  });
+ 
+});
