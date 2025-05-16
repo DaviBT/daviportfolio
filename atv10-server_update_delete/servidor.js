@@ -4,11 +4,11 @@ var bodyParser = require("body-parser")
 var mongodb = require("mongodb");
 
 const MongoClient = mongodb.MongoClient;
-const uri = `mongodb+srv://davi:1234@bancoaula.sgm5yag.mongodb.net/?retryWrites=true&w=majority&appName=bancoAula`;
+const uri = `mongodb+srv://davi:lab10@lab10.hft8gmk.mongodb.net/?retryWrites=true&w=majority&appName=lab10`;
 const client = new MongoClient(uri, { useNewUrlParser: true });
 
-var dbo = client.db("bancoAula");
-var posts = dbo.collection("posts");
+var dbo = client.db("lab10");
+var usuarios = dbo.Collection("usuarios");
 
 var app = express();
 app.use(express.static('./public'))
@@ -35,4 +35,19 @@ app.get('/', (req, res) => {
   });
 
 
+
+// usuario ---------------
+app.post("/cadast_user", function(req, resp) {
+  var data = { db_nome: req.body.nome, db_login: req.body.login, db_senha: req.body.senha };
+
+  usuarios.insertOne(data, function (err) {
+    console.log(err)
+    if (err) {
+      resp.render('resposta_usuario', {resposta: "Erro ao cadastrar usuário!"})
+    }else {
+      resp.render('resposta_usuario', {resposta: "Usuário cadastrado com sucesso!"})        
+    };
+  });
+ 
+});
 

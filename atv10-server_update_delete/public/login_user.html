@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
-  
+    <header>
+        <h1>Login</h1>
+    </header>
+
+    <main>
+        
+
+        <form action="/nome_user" method="post">
+
+            <label for="nome">Insira o seu nome: </label>
+            <input type="text" name="nome" id="nome">
+
+            <label for="login">Insira o seu login: </label>
+            <input type="text" name="login" id="login">
+
+            <label for="senha">Insira a sua senha: </label>
+            <input type="password" name="senha" id="senha">
+
+            <button type="submit">Enviar</button>
+        </form>
+
+
+    </main>
+
+
+    <script src="../servidor.js"></script>
 </body>
 </html>
