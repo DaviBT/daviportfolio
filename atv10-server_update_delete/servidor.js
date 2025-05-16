@@ -91,3 +91,24 @@ app.post("/new_car", function(req, resp) {
   });
  
 });
+
+
+
+
+// atualizar carro
+app.post("/up_car", function(req, resp) {
+  var data = { db_modelo: req.body.modelo, db_senha: req.body.ano };
+  var newData = { $set: {db_qtde_disponivel: req.body.qtde_disponivel} };
+
+  usuarios.updateOne(data, newData, function (err, result) {
+    console.log(result);
+    if (result.modifiedCount == 0) {
+      resp.render('resposta_usuario', {resposta: "Carro/modelo não encontrado!"})
+    }else if (err) {
+      resp.render('resposta_usuario', {resposta: "Erro ao atualizar o carro!"})
+    }else {
+      resp.render('resposta_usuario', {resposta: "Carro atualizado com sucesso!"})        
+    };
+  });
+ 
+});
