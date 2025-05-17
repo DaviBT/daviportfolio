@@ -10,18 +10,7 @@
   <a href="/cadastrar_post.html"><button>Criar post</button></a>
 
   <main>
-    <% if (posts.length === 0) { %>
-      <p>Nenhum post encontrado.</p>
-    <% } else { %>
-      <% posts.forEach(post => { %>
-        <article>
-          <h1><%= post.db_titulo %></h1>
-          <p><%= post.db_resumo %></p>
-          <p><%= post.db_conteudo %></p>
-          <hr>
-        </article>
-      <% }) %>
-    <% } %>
+    
   </main>
 
 </body>
