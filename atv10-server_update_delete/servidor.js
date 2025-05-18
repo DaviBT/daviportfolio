@@ -94,7 +94,11 @@ app.get('/public/carro.html', (req, res) => {
 // criar carro
 app.post("/new_car", function(req, resp) {
 
-  const db_marca = req.body.marca
+  const db_marca = req.body.marca;
+  const db_modelo = req.body.modelo;
+  const db_ano = req.body.ano;
+  const db_qtde_disponivel = req.body.qtde_disponivel;
+
 
 
   var data = { db_marca: req.body.marca, db_modelo: req.body.modelo, db_ano: req.body.ano, db_qtde_disponivel: req.body.qtde_disponivel };
@@ -104,7 +108,7 @@ app.post("/new_car", function(req, resp) {
     if (err) {
       console.log(err)
     }else {
-      resp.render('carros_dispo', {db_marca})        
+      resp.render('carros_dispo', {db_marca, db_modelo, db_ano, db_qtde_disponivel})        
     };
   });
  
@@ -114,19 +118,21 @@ app.post("/new_car", function(req, resp) {
 // vender carro
 app.post("/rem_car", function(req, resp) {
   var data = { db_marca: req.body.marca, db_modelo: req.body.modelo, db_ano: req.body.ano };
+
+  const db_marca = req.body.marca;
+  const db_modelo = req.body.modelo;
+  const db_ano = req.body.ano;
  
   carros.deleteOne(data, function (err, result) {
     console.log(result);
-    if (result.deletedCount == 0) {
-      resp.render('resposta_usuario', {resposta: "Usuário/senha não encontrado!"})
-    }else if (err) {
-      resp.render('resposta_usuario', {resposta: "Erro ao remover usuário!"})
+    if (err) {
+      console.log(err)
     }else {
-      resp.render('resposta_usuario', {resposta: "Usuário removido com sucesso!"})        
+      resp.render('carros_rem', {db_marca, db_modelo, db_ano})        
     };
   });
+  });
 
-});
 
 
 
